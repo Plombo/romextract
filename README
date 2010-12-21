@@ -1,0 +1,55 @@
+romextract
+================================================================================
+
+Romextract is a collection of software for *nix systems (especially Linux).  
+Collectively, the programs can be used to extract ROMs from WAD files of Wii 
+Virtual Console games.  These ROMs can be played on popular emulators for the 
+NES, SNES, TurboGrafx16/PC-Engine, Genesis, Master System, and Nintendo 64.
+
+
+Authors
+================================================================================
+
+The programs that comprise romextract were written by various authors:
+u8it - icefire (see https://github.com/icefire/u8it)
+wadunpacker - BFGR, based on Zeventig by Segher
+romc - Jurai, based on LZSS code by Haruhiko Okumura
+ccfextract - Plombo
+nes_rom_extract - Plombo
+
+
+Function
+================================================================================
+
+Use wadunpacker to unpack each WAD file.  In the extracted file, you will find 
+multiple ".app" files.  The most important ones are:
+* 00000001.app - For NES games, run nes_rom_extract on this file to extract the 
+  ROM.
+* 00000005.app - This is a U8 archive that can be extracted by u8it.  It 
+  contains several important files, depending on the type of game:
+	* html.arc OR emanual.arc OR man.arc - a U8 archive (extract it with u8it) 
+	  containing the HTML files for the game manual
+	* [TITLE].rom - for SNES games, this is a version of the ROM with messed-up 
+	  sound.  There *might* be another file that is the original ROM with 
+	  correct sound, with the same name (referred to here as [TITLE]) but a 
+	  different extension.
+	* rom - for N64 games, if there is a file simply called "rom" with no 
+	  extension, it is the game ROM.
+	* romc - for N64 games, if there is a file called "romc", it is a compressed
+	  version of the game ROM.  In most cases, it can be uncompressed by the 
+	  "romc" utility included with romextract.  Otherwise, there's not much you 
+	  can do.
+	* data.ccf - for Genesis and Master System games, this is an archive 
+	  containing the game ROM and possibly some other stuff.  Extract it with 
+	  the "ccfextract" utility included with romextract.
+
+
+Building
+================================================================================
+
+For now, I've just written a simple shell script to compile all of the programs.
+Just run the shell script "build.sh" to compile.  You will need gcc, zlib1g-dev,
+and libssl-dev.
+
+
+
