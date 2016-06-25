@@ -11,7 +11,7 @@ Authors
 ================================================================================
 
 The programs that comprise romextract were written by various authors:
-u8it - icefire (see https://github.com/icefire/u8it)
+u8it - icefire (see https://github.com/grp/u8it)
 wadunpacker - BFGR, based on Zeventig by Segher
 romc - Jurai, based on LZSS code by Haruhiko Okumura
 ccfextract - Plombo
